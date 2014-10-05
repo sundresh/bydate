@@ -10,7 +10,7 @@ function td () {
 	export TODAY=`pwd`
 }
 
-function td () {
+function yd () {
 	cd $BYDATE_BASE
 
 	local yesterday=`date +%Y/%m/%d -d yesterday`
