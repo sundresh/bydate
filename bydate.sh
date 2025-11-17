@@ -1,18 +1,14 @@
-export BYDATE_BASE=~/bydate
+export BYDATE_BASE=${BYDATE_BASE-~/bydate}
 
 function td () {
-	cd $BYDATE_BASE
+	local today=${BYDATE_BASE}/$(date +%Y/%m/%d)
+	mkdir -p "${today}" && cd "${today}"
+	ln -nsf "${today}" "${BYDATE_BASE}/today"
 
-	local today=`date +%Y/%m/%d`
-	ln -nsf $today today
-	mkdir -p $today && cd $today
-
-	export TODAY=`pwd`
+	export TODAY=$(pwd)
 }
 
 function yd () {
-	cd $BYDATE_BASE
-
-	local yesterday=`date +%Y/%m/%d -d yesterday`
-	mkdir -p $yesterday && cd $yesterday
+	local yesterday=${BYDATE_BASE}/$(date +%Y/%m/%d -d yesterday)
+	mkdir -p "${yesterday}" && cd "${yesterday}"
 }
